@@ -29,7 +29,7 @@ class RSessionProxyHandler(SuperviseAndProxyHandler):
     name = 'rsession'
 
     def get_env(self):
-        env = {}
+        env = os.environ
 
         # rserver needs USER to be set to something sensible,
         # otherwise it'll throw up an authentication page
@@ -77,7 +77,7 @@ server {{
         filename = self.write_conf(user, self.port, site_dir)
 
         # shiny command.
-        return [ 'shiny-server', filename ] 
+        return [ 'shiny-server', filename ]
 
 def setup_handlers(web_app):
     web_app.add_handlers('.*', [
